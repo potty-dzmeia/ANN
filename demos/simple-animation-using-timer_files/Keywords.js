@@ -1,0 +1,10 @@
+var tf_ads=[['graphics','local.com','Local Animation Services','Find Animation Services Near You at Local.com.','http:\/\/rc.us-west.srv.overture.com\/d\/sr\/?xargs=20AGRkGGzlHgXD2jxQ4Jt0z6AZ5YlEUYIolS5Zb42_ppeBskuqaS1Jo5SWGR-Z90PqeBxjJliWaVmLNhRUO193d7TFLfALC1feZS-zaAaT4b9DH0xR7Tyhh0H0titQUoSOGip1sT2xC2tKnbWUFC-CbOGTUuE6oyb4AxjRkMknsm1Bna2qDyRoOa2WTT0kTBfRszXtpJzpizPXhQzKBJU7MPejHMxnOYiYo4jaShRACB1NC4Thqb2iWmU.000000011ebacb13','','','8XfsoP07rAsdR7THjtjTGfHjOf9K6tYkqimAirKgo7zVlPQfJSR5n3ic%2F7ypW1s0TiN%2BbJGnw595r6PoSklkxBDMeMvb8zZTDjMVWrTpWXFV6NU9Ht%2BH5hA%2BftxgRgN661EzkwVD7gw%2BKDSz4EHbn66XU7HuxH3xpRNVEfPHz7UbQ0%2Fz%2BU7PDBhWaa5NURGS%2BWmbOAaVx7EfO3Mg49DOHY%2FOKhfvPi%2F%2Byjs96Ns4hJcfO3Mg49DOHRaMhb9i1OCiIm0Mo3loy5Q1SmNB7u0A1X3qISw1cJNZM%2B5Dy4e%2BLiq8Qd7k%2FJjSNRL8bjQpNF5sNR8nH4yNEpyTc15j6yFefA%3D%3D','113','','6257','6114','101','','','','','',false,false,false]
+,['animation','www.imvu.com','Like Anime Games?','Try 3-d Anime Chat at IMVU free.','http:\/\/rc.us-west.srv.overture.com\/d\/sr\/?xargs=20ABWu04flIZ8zboaK0KrkfYjM_GNeQ8EWBqu8r412ywdXpwKWfEMXTxtzVhtbcY8JPkko0ptLCle8uud1cqznNPcQG20BIFknRsXbNDjeauodA6AsJQsthTxYo2puS8ny3y_YUfhAhZsWo9lBNIJFYPejlo7LafXZmT_Y-yAEaiQOKcKDOrJqlzLxx00elwNZrAe28tXc4PDm7BJk4R2i2iIPasiBQ6A6tv-tLcvuNmNhGeHcAarxhoE.000000011ebacb13','','','w6%2BrwJ%2BU5DYdR7THjtjTGRtYiPq40vo%2FWGEdZe85sNWwHKU0OEc5vHic%2F7ypW1s0eiGIp4oi03KdVWjTgcQEkZXjXovfzPpvJEf7IPV1LyC8Qd7k%2FJjSNZFEQgbhzes%2BGunO5tIRXIOul1Ox7sR98f7Jbf1%2Ffkxa2b047PHPhTBOR00%2FmKe8Pq3llzpLOpS3M1mO1xC69%2FLm%2F7b%2BIv%2BMkphpPfQnUHztgdlg0BD%2BhPw6L2aU00z4FN1HUZKHAu29%2BUw%2FuJRPEQlVBynkZfrVl%2B%2FPrK0ql6FmJMsoe3vm7fk6TgP03%2BB61FXo1T0e34fmis6yJacSmTmT3Frd8VdCYQ%3D%3D','113','','6257','6114','101','','','','','',false,false,false]
+];
+
+var tf_color_scheme_attribute = [0,1,1,''];var tf_partner_attributes={101: ['','',,'']};
+var tf_city = 'Sofiya';
+var tf_state = 'SOFIYA-GRAD';
+var tf_pub_attributes = ['',true,true,true,true,2,0,false,'1.0em','0' ];
+tf_getAds();
+var tf_viewClickTimeDiff = 500;

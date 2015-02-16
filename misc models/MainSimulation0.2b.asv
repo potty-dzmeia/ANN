@@ -1,0 +1,61 @@
+javaaddpath E:\ANN\GridWorld\GridWorld\dist\GridWorld.jar
+import gridworld.*
+import java.lang.Thread
+
+
+
+% INITIALIZATION
+%--------------------------------------------------------------------------
+% Create the 100 GridWorlds 
+gridWorlds = javaArray('gridworld.GridWorld',100);
+for i=1:100
+    gridWorlds(i) = GridWorld(10,10,10); %10x10 world with 10 food elements
+end
+
+% Create 100 ANNs
+layers1 = cell(1,100);
+for i=1:100
+    layers1{i}= newp([0 1; 0 1; 0 1],7); % 3 inputs and 7 units in the hidden layer
+    layers1{i}.inputweights{1,1}.initFcn = 'rands';
+    layers1{i} = init(layers1{i});
+end
+
+layers2 = cell(1,100);
+for i=1:100
+    layers2{i}= newp([0 1; 0 1; 0 1; 0 1; 0 1; 0 1; 0 1], 2); % 2 outputs
+    layers2{i}.inputweights{1,1}.initFcn = 'rands';
+    layers2{i} = init(layers2{i});
+end
+
+
+
+
+% Draw the current situation of the world
+%gridWorld.Draw(gridFrame);
+%Thread.sleep(1000);
+
+%Simulate each of the networks 100 times
+%-------------------------------------------------------------------------
+
+for i=1:100
+    % Get the sensor information from the simulation 
+    right = double(gridWorld.getRSensor());
+    left  = double(gridWorld.getLSensor());
+    front = double(gridWorld.getFSensor());
+
+    % Using the sensor information simulate the perceptron
+    actionToDo = sim(layer2, double(sim(layer1,[right;left;front])));
+
+    % Update the position of the creature in the real world simulation
+    gridWorld.action(actionToDo(1,1),actionToDo(2,1));
+    % Draw the world
+    gridWorld.Draw(gridFrame);
+    Thread.sleep(500);
+
+end
+
+
+
+
+
+

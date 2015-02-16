@@ -1,0 +1,153 @@
+gridWorld.Action(1);
+gridWorld.Draw(gridFrame);
+
+gridWorld.Action(2);
+gridWorld.Draw(gridFrame);
+Thread.sleep(1000);
+
+gridWorld.Action(3);
+gridWorld.Draw(gridFrame);
+Thread.sleep(1000);
+
+gridWorld.Action(1);
+gridWorld.Draw(gridFrame);
+Thread.sleep(1000);
+
+gridWorld.Action(0);
+gridWorld.Draw(gridFrame);
+Thread.sleep(1000);
+gridWorld.Action(1);
+gridWorld.Draw(gridFrame);
+Thread.sleep(1000);
+
+gridWorld.Action(3);
+gridWorld.Draw(gridFrame);
+Thread.sleep(1000);
+gridWorld.Action(3);
+gridWorld.Draw(gridFrame);
+Thread.sleep(1000);
+
+
+layer1.inputweights{1,1}.initFcn = 'rands';
+layer1.biases{1}.initFcn = 'rands';
+layer1 = init(layer1);
+
+layer2.inputweights{1,1}.initFcn = 'rands';
+layer2 = init(layer2);
+layer2.biases{1}.initFcn = 'rands';
+
+		    
+
+food = gridWorlds(1).getEatenFood();
+
+for i=1:100
+if gridWorlds(i).getEatenFood()>food 
+food = gridWorlds(i).getEatenFood();
+best = i;
+end
+end
+
+
+
+ aa(int32(mod(rand()*1000,20)+1)) = rand()-rand()
+
+
+
+
+% For each of the top 5 (or less) networks change 3 weights
+for i=1:5
+        
+    % there are 21 weights in the first layer - change two of them
+    layers1{topNets(i)}.IW{1,1}(int32(mod(rand()*1000,20)+1)) = rand()-rand();
+    layers1{topNets(i)}.IW{1,1}(int32(mod(rand()*1000,20)+1)) = rand()-rand();
+    % there are 14 weights in the second layer - change only one weight
+    layers2{topNets(i)}.IW{1,1}(int32(mod(rand()*1000,13)+1)) = rand()-rand();
+    
+end
+
+% Generate 19 offsrpings for each of the top 5 networks.
+
+
+
+
+
+topNets2(5,2) = 0;
+
+for i=1:100
+    
+   if gridWorlds(i).getEatenFood()>topNets2(1,2) 
+       topNets2(1,1) = i;
+       topNets2(1,2) = gridWorlds(i).getEatenFood();
+       continue;
+   end
+   if gridWorlds(i).getEatenFood()>topNets2(2,2)
+       topNets2(2,1) = i;
+       topNets2(2,2) = gridWorlds(i).getEatenFood();
+       continue;
+   end
+   if gridWorlds(i).getEatenFood()>topNets2(3,2)
+       topNets2(3,1) = i;
+       topNets2(3,2) = gridWorlds(i).getEatenFood();
+       continue;
+   end
+   if gridWorlds(i).getEatenFood()>topNets2(4,2)
+       topNets2(4,1) = i;
+       topNets2(4,2) = gridWorlds(i).getEatenFood();
+       continue;
+   end
+   if gridWorlds(i).getEatenFood()>topNets2(5,2)
+       topNets2(5,1) = i;
+       topNets2(5,2) = gridWorlds(i).getEatenFood();
+       continue;
+   end
+
+end
+
+
+
+gridFrame = GridJFrame(10,10);
+   netNum = 4;
+   for a=1:50 % 100 times each
+        
+        % Get the sensor information from the simulation 
+        right = double(gridWorlds(netNum).getRSensor());
+        left  = double(gridWorlds(netNum).getLSensor());
+        front = double(gridWorlds(netNum).getFSensor());
+
+        % Create the new input=old result from the hidden units + new sensory input
+        tempRes = [[right;left;front];contextLayers{netNum}];
+        % Now simulate the network
+        contextLayers{netNum} = sim(layers1{netNum},tempRes);
+        actionToDo = sim(layers2{netNum}, double(contextLayers{netNum}) );
+
+        % Update the position of the creature in the real world simulation
+        gridWorlds(netNum).action(actionToDo(1,1),actionToDo(2,1));
+        % Draw the world
+        gridWorlds(netNum).Draw(gridFrame);
+        Thread.sleep(500);
+    end
+gridFrame.dispose();
+		
+
+
+
+
+topNets2(5,2) = 0;
+
+for i=1:100 % check food eaten for every network
+    for aa=1:5 % compare with the current best 5   
+        if gridWorlds(i).getEatenFood()>=topNets2(aa,2) 
+           % Save the network if it has eaten more food than a previous
+           % best 5
+          
+           for zz=5:-1:(aa+1) % But first make room for the new network
+               topNets2(zz,1) = topNets2(zz-1,1);
+               topNets2(zz,2) = topNets2(zz-1,2);
+           end
+               
+           topNets2(aa,1) = i;
+           topNets2(aa,2) = gridWorlds(i).getEatenFood();
+           break;
+        end
+    end
+end
